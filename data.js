@@ -76,6 +76,8 @@ const ELEMENTOS = {
     ave:          { nome: "Ave",          imagem: "imagens/ave.png",          categoria: "vida"},
     dinossauro:   { nome: "Dinossauro",   imagem: "imagens/dinossauro.png",   categoria: "vida"},
     domesticacao: { nome: "Domesticacao", imagem: "imagens/domesticacao.png", categoria: "vida"},
+    abelha:       { nome: "Abelha",       imagem: "", categoria: "vida"},
+    animal:       { nome: "Animal",       imagem: "", categoria: "vida"},
 
     // Civilização
     casa:         { nome: "Casa",         imagem: "imagens/casa.png",         categoria: "civilizacao" },
@@ -136,14 +138,14 @@ adicionarReceita("lava", "agua", "pedra");
 adicionarReceita("pedra", "ar", "areia");
 adicionarReceita("areia", "fogo", "vidro");
 adicionarReceita("pedra", "fogo", "metal");
-adicionarReceita("lama", "fogo", "tijolo");
+adicionarReceita("lama", "fogo", "argila");
 adicionarReceita("lama", "sol", "argila");
 adicionarReceita("vapor", "ar", "nuvem");
 adicionarReceita("chuva", "terra", "pantano");
 adicionarReceita("oceano", "sol", "sal");
 adicionarReceita("sol", "energia", "estrela");
 adicionarReceita("oceano", "vento", "onda");
-adicionarReceita("nuvem", "vento", "tempestade");
+adicionarReceita("chuva", "vento", "tempestade");
 adicionarReceita("tempestade", "energia", "raio");
 adicionarReceita("chuva", "sol", "arcoiris");
 adicionarReceita("rio", "terra", "vale");
@@ -172,6 +174,8 @@ adicionarReceita("peixe", "peixe", "tubarao");
 adicionarReceita("passaro", "ar", "ave");
 adicionarReceita("reptil", "terra", "dinossauro");
 adicionarReceita("humano", "animal", "domesticacao");
+adicionarReceita("vida", "flor", "abelha")
+adicionarReceita("vida", "floresta", "animal")
 
 // Nível 4: civilização
 adicionarReceita("arvore", "pedra", "madeira");
@@ -197,3 +201,17 @@ adicionarReceita("robo", "computador", "ia");
 adicionarReceita("computador", "internet", "rede");
 adicionarReceita("roda", "madeira", "carroca");
 adicionarReceita("barco", "metal", "navio");
+
+//Repetições
+adicionarReceita("nuvem", "agua", "chuva");
+adicionarReceita("neve", "fogo", "agua");
+adicionarReceita("gele", "fogo", "agua");
+adicionarReceita("neve", "calor", "agua");
+adicionarReceita("gelo", "calor", "agua");
+adicionarReceita("nuvem", "vento", "tempestade");
+adicionarReceita("semente", "planta", "fruta");
+adicionarReceita("argila", "argila", "tijolo");
+adicionarReceita("sol", "sol", "calor");
+
+
+
