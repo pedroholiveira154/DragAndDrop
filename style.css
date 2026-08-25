@@ -26,7 +26,8 @@
     --cat-civilizacao-ink: #a8502f;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -129,8 +130,10 @@ body {
     display: none;
 }
 
-.encaixe .ficha-elemento .emoji {
-    font-size: 2.2rem;
+.encaixe .ficha-elemento .icone {
+    width: 2.6rem;
+    height: 2.6rem;
+    object-fit: contain;
 }
 
 /* Área de elementos descobertos — grade com rolagem vertical própria    */
@@ -173,9 +176,12 @@ body {
     cursor: grabbing;
 }
 
-.ficha-elemento .emoji {
-    font-size: 2.1rem;
+.ficha-elemento .icone {
+    width: 2.4rem;
+    height: 2.4rem;
+    object-fit: contain;
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
+    display: block;
 }
 
 .ficha-elemento .rotulo {
@@ -184,23 +190,56 @@ body {
     color: var(--ink-soft);
 }
 
-.ficha-elemento.categoria-natureza { background: var(--cat-natureza); }
-.ficha-elemento.categoria-natureza .rotulo { color: var(--cat-natureza-ink); }
-.ficha-elemento.categoria-material { background: var(--cat-material); }
-.ficha-elemento.categoria-material .rotulo { color: var(--cat-material-ink); }
-.ficha-elemento.categoria-vida { background: var(--cat-vida); }
-.ficha-elemento.categoria-vida .rotulo { color: var(--cat-vida-ink); }
-.ficha-elemento.categoria-civilizacao { background: var(--cat-civilizacao); }
-.ficha-elemento.categoria-civilizacao .rotulo { color: var(--cat-civilizacao-ink); }
+.ficha-elemento.categoria-natureza {
+    background: var(--cat-natureza);
+}
+
+.ficha-elemento.categoria-natureza .rotulo {
+    color: var(--cat-natureza-ink);
+}
+
+.ficha-elemento.categoria-material {
+    background: var(--cat-material);
+}
+
+.ficha-elemento.categoria-material .rotulo {
+    color: var(--cat-material-ink);
+}
+
+.ficha-elemento.categoria-vida {
+    background: var(--cat-vida);
+}
+
+.ficha-elemento.categoria-vida .rotulo {
+    color: var(--cat-vida-ink);
+}
+
+.ficha-elemento.categoria-civilizacao {
+    background: var(--cat-civilizacao);
+}
+
+.ficha-elemento.categoria-civilizacao .rotulo {
+    color: var(--cat-civilizacao-ink);
+}
 
 .ficha-nova {
     animation: pop 0.5s ease;
 }
 
 @keyframes pop {
-    0% { transform: scale(0.5); opacity: 0; }
-    60% { transform: scale(1.15); opacity: 1; }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Aviso (mensagens de feedback) */
@@ -222,9 +261,17 @@ body {
     text-align: center;
 }
 
-.aviso-sucesso { background: #2f7a3a; }
-.aviso-erro { background: #a8402f; }
-.aviso-info { background: var(--ink); }
+.aviso-sucesso {
+    background: #2f7a3a;
+}
+
+.aviso-erro {
+    background: #a8402f;
+}
+
+.aviso-info {
+    background: var(--ink);
+}
 
 /* -------------------------------------------------------------------- */
 /* Tablet na vertical — empilhado, 3 colunas                             */
@@ -269,8 +316,9 @@ body {
         height: 8rem;
     }
 
-    .encaixe .ficha-elemento .emoji {
-        font-size: 2.8rem;
+    .encaixe .ficha-elemento .icone {
+        width: 3.3rem;
+        height: 3.3rem;
     }
 }
 

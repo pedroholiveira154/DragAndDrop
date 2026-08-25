@@ -29,15 +29,16 @@ function criarFicha(idElemento) {
     ficha.title = dados.nome;
     ficha.addEventListener('dragstart', arrastar);
 
-    const emoji = document.createElement('span');
-    emoji.className = 'emoji';
-    emoji.textContent = dados.emoji;
+    const icone = document.createElement('img');
+    icone.className = 'icone';
+    icone.src = dados.imagem;
+    icone.alt = dados.nome;
 
     const rotulo = document.createElement('span');
     rotulo.className = 'rotulo';
     rotulo.textContent = dados.nome;
 
-    ficha.append(emoji, rotulo);
+    ficha.append(icone, rotulo);
     return ficha;
 }
 
