@@ -1,0 +1,290 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+:root {
+    --ink: #2c2a3d;
+    --ink-soft: #6b6885;
+    --card: #ffffff;
+    --line: #d9d6e8;
+    --painel-combinacao: #ffffff;
+    --painel-elementos: #f1f1f6;
+
+    --cat-natureza: #cfe8f7;
+    --cat-natureza-ink: #1f6a8f;
+    --cat-material: #ece0cf;
+    --cat-material-ink: #8a6a2f;
+    --cat-vida: #d7f0d0;
+    --cat-vida-ink: #2f7a3a;
+    --cat-civilizacao: #f7d9cf;
+    --cat-civilizacao-ink: #a8502f;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--painel-combinacao);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* -------------------------------------------------------------------- */
+/* Cabeçalho — igual em todas as versões (desktop, tablet e celular)     */
+/* -------------------------------------------------------------------- */
+
+.cabecalho {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 1.1rem 1rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.cabecalho h1 {
+    font-family: 'Baloo 2', 'Inter', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    letter-spacing: 0.3px;
+}
+
+.contador {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+}
+
+/* -------------------------------------------------------------------- */
+/* Layout principal — mobile-first: empilhado (dropPlace em cima)       */
+/* -------------------------------------------------------------------- */
+
+.jogo {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.areaCombinacao {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    background: var(--painel-combinacao);
+    border-bottom: 1px solid var(--line);
+}
+
+.operador {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.6rem;
+    color: var(--ink-soft);
+}
+
+.encaixe {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.encaixe.preenchido {
+    border-color: var(--cat-natureza-ink);
+}
+
+.encaixe.resultado {
+    border-color: #b7a6f0;
+    background: #f4f0ff;
+}
+
+.encaixe.pop {
+    animation: pop 0.4s ease;
+}
+
+.encaixe .ficha-elemento {
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+.encaixe .ficha-elemento .rotulo {
+    display: none;
+}
+
+.encaixe .ficha-elemento .emoji {
+    font-size: 2.2rem;
+}
+
+/* Área de elementos descobertos — grade com rolagem vertical própria    */
+
+.areaElementos {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    background: var(--painel-elementos);
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: start;
+    gap: 0.75rem;
+}
+
+.ficha-elemento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 1rem 0.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    cursor: grab;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(44, 42, 61, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ficha-elemento:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(44, 42, 61, 0.12);
+}
+
+.ficha-elemento:active {
+    cursor: grabbing;
+}
+
+.ficha-elemento .emoji {
+    font-size: 2.1rem;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
+}
+
+.ficha-elemento .rotulo {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+}
+
+.ficha-elemento.categoria-natureza { background: var(--cat-natureza); }
+.ficha-elemento.categoria-natureza .rotulo { color: var(--cat-natureza-ink); }
+.ficha-elemento.categoria-material { background: var(--cat-material); }
+.ficha-elemento.categoria-material .rotulo { color: var(--cat-material-ink); }
+.ficha-elemento.categoria-vida { background: var(--cat-vida); }
+.ficha-elemento.categoria-vida .rotulo { color: var(--cat-vida-ink); }
+.ficha-elemento.categoria-civilizacao { background: var(--cat-civilizacao); }
+.ficha-elemento.categoria-civilizacao .rotulo { color: var(--cat-civilizacao-ink); }
+
+.ficha-nova {
+    animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* Aviso (mensagens de feedback) */
+
+.aviso {
+    position: fixed;
+    bottom: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.65rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    max-width: 90vw;
+    text-align: center;
+}
+
+.aviso-sucesso { background: #2f7a3a; }
+.aviso-erro { background: #a8402f; }
+.aviso-info { background: var(--ink); }
+
+/* -------------------------------------------------------------------- */
+/* Tablet na vertical — empilhado, 3 colunas                             */
+/* -------------------------------------------------------------------- */
+
+@media (min-width: 600px) {
+    .areaElementos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .encaixe {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+/* -------------------------------------------------------------------- */
+/* Tablet na horizontal — lado a lado, 3 colunas                         */
+/* -------------------------------------------------------------------- */
+
+@media (min-width: 900px) {
+    .jogo {
+        flex-direction: row;
+    }
+
+    .areaCombinacao {
+        flex: 1 1 50%;
+        height: 100%;
+        border-bottom: none;
+        border-right: 1px solid var(--line);
+    }
+
+    .areaElementos {
+        flex: 1 1 50%;
+        height: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        align-content: start;
+    }
+
+    .encaixe {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .encaixe .ficha-elemento .emoji {
+        font-size: 2.8rem;
+    }
+}
+
+/* -------------------------------------------------------------------- */
+/* Desktop — lado a lado, 4 colunas                                      */
+/* -------------------------------------------------------------------- */
+
+@media (min-width: 1200px) {
+    .areaElementos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .encaixe {
+        width: 8.5rem;
+        height: 8.5rem;
+    }
+}
