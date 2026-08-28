@@ -139,7 +139,6 @@ adicionarReceita("pedra", "ar", "areia");
 adicionarReceita("areia", "fogo", "vidro");
 adicionarReceita("pedra", "fogo", "metal");
 adicionarReceita("lama", "fogo", "argila");
-adicionarReceita("lama", "sol", "argila");
 adicionarReceita("vapor", "ar", "nuvem");
 adicionarReceita("chuva", "terra", "pantano");
 adicionarReceita("oceano", "sol", "sal");
@@ -212,6 +211,18 @@ adicionarReceita("nuvem", "vento", "tempestade");
 adicionarReceita("semente", "planta", "fruta");
 adicionarReceita("argila", "argila", "tijolo");
 adicionarReceita("sol", "sol", "calor");
-
+adicionarReceita("tijolo", "tijolo", "tijolo");
+adicionarReceita("poeira", "vida", "humano");
+adicionarReceita("areia", "calor", "vidro");
+adicionarReceita("lama", "sol", "argila");
+adicionarReceita("chuva", "lama", "pantano");
+adicionarReceita("chuva", "energia", "tempestade")
+adicionarReceita("chuva", "eletricidade", "tempestade")
+adicionarReceita("chuva", "raio", "tempestade")
+adicionarReceita("vida", "lama", "humano")
+adicionarReceita("arvore", "ferramenta", "madeira")
+adicionarReceita("madeira", "ferramenta", "roda")
+adicionarReceita("metal", "calor", "ferramenta")
+adicionarReceita("vida", "agua", "peixe")
 
 
