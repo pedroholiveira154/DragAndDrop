@@ -12,9 +12,22 @@ const encaixeResultado = document.getElementById('encaixeResultado');
 const sinalIgual = document.getElementById('sinalIgual');
 const aviso = document.getElementById('aviso');
 const contadorDescobertos = document.getElementById('contadorDescobertos');
+const informacoesElementos = document.getElementById("informacoesElementos");
 
 // Elementos que o jogador já descobriu (começa com os 4 clássicos)
 const descobertos = new Set(ELEMENTOS_INICIAIS);
+
+// Elementos que existem
+const totalElementos = Object.keys(ELEMENTOS).length;
+
+// Elementos que aparecem como ingrediente em pelo menos uma receita.
+// Quem não estiver aqui é um "beco sem saída" — não gera mais nada.
+const ELEMENTOS_COMBINAVEIS = new Set();
+Object.keys(RECEITAS).forEach(chave => {
+    const [idA, idB] = chave.split('+');
+    ELEMENTOS_COMBINAVEIS.add(idA);
+    ELEMENTOS_COMBINAVEIS.add(idB);
+});
 
 atualizarContador();
 
@@ -24,9 +37,16 @@ function criarFicha(idElemento) {
     const dados = ELEMENTOS[idElemento];
     const ficha = document.createElement('div');
     ficha.className = `ficha-elemento categoria-${dados.categoria}`;
+
+    if (!ELEMENTOS_COMBINAVEIS.has(idElemento)) {
+        ficha.classList.add('sem-combinacoes');
+    }
+
     ficha.dataset.idElemento = idElemento;
     ficha.draggable = true;
-    ficha.title = dados.nome;
+    ficha.title = ELEMENTOS_COMBINAVEIS.has(idElemento)
+        ? dados.nome
+        : `${dados.nome} (sem mais combinações)`;
     ficha.addEventListener('dragstart', arrastar);
 
     const icone = document.createElement('img');
@@ -65,7 +85,9 @@ function limparEncaixes() {
 }
 
 function atualizarContador() {
-    contadorDescobertos.textContent = `${descobertos.size} elementos descobertos`;
+    contadorDescobertos.textContent = `${descobertos.size} elementos descobertos de ${totalElementos}`;
+    console.log(ELEMENTOS)
+    console.log(ELEMENTOS.lenght)
 }
 
 function mostrarAviso(mensagem, tipo = 'info') {
@@ -108,6 +130,43 @@ function verificarCombinacao() {
     }
 
     setTimeout(limparEncaixes, 900);
+}
+
+function infoElementos() {
+    Swal.fire({
+        title: 'Cores do fundo',
+        html: `
+    <div style="text-align: left;">
+
+      <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+        <div style="width: 30px; height: 30px; background: #d7f0d0; border-radius: 4px;"></div>
+        <span>Representa Vida</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+        <div style="width: 30px; height: 30px; background: #cfe8f7; border-radius: 4px;"></div>
+        <span>Representa Natureza</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+        <div style="width: 30px; height: 30px; background: #ece0cf; border-radius: 4px;"></div>
+        <span>Representa Material</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+        <div style="width: 30px; height: 30px; background: #f7d9cf; border-radius: 4px;"></div>
+        <span>Representa Civilização</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+        <div style="width: 30px; height: 30px; background: #e4d6f7; border-radius: 4px;"></div>
+        <span>Não há mais combinações</span>
+      </div>
+
+    </div>
+  `,
+        confirmButtonText: 'Fechar'
+    });
 }
 
 renderizarElementos();

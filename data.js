@@ -76,8 +76,9 @@ const ELEMENTOS = {
     ave:          { nome: "Ave",          imagem: "imagens/ave.png",          categoria: "vida"},
     dinossauro:   { nome: "Dinossauro",   imagem: "imagens/dinossauro.png",   categoria: "vida"},
     domesticacao: { nome: "Domesticacao", imagem: "imagens/domesticacao.png", categoria: "vida"},
-    abelha:       { nome: "Abelha",       imagem: "", categoria: "vida"},
-    animal:       { nome: "Animal",       imagem: "", categoria: "vida"},
+    abelha:       { nome: "Abelha",       imagem: "abelha.png",               categoria: "vida"},
+    animal:       { nome: "Animal",       imagem: "animal.png",               categoria: "vida"},
+    floresta:     { nome: "Floresta",     imagem: "floresta.png",             categoria: "vida"},
 
     // Civilização
     casa:         { nome: "Casa",         imagem: "imagens/casa.png",         categoria: "civilizacao" },
@@ -175,6 +176,7 @@ adicionarReceita("reptil", "terra", "dinossauro");
 adicionarReceita("humano", "animal", "domesticacao");
 adicionarReceita("vida", "flor", "abelha")
 adicionarReceita("vida", "floresta", "animal")
+adicionarReceita("arvore", "arvore", "floresta")
 
 // Nível 4: civilização
 adicionarReceita("arvore", "pedra", "madeira");
